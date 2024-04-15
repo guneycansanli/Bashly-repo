@@ -1,0 +1,38 @@
+name: deploy.sh
+help: Sample application
+version: 0.1.0
+
+commands:
+- name: read
+  alias: r
+  help: Read file from remote hosts
+
+  args:
+  - name: host
+    required: true
+    help: Target host
+
+  - name: target
+    required: true
+    help: Target file absolute path
+
+  flags:
+  - long: --force
+    short: -f
+    required: false
+    help: Read with sudo 
+
+  - long: --debug
+    short: -d
+    required: false
+    help: Debug Mode
+
+  examples:
+  - deploy.sh target /etc/cron.daily/apt-compat 
+  - deploy.sh target --force /etc/cron.daily/apt-compat 
+  - deploy.sh target --debug --force /etc/cron.daily/apt-compat 
+
+  environment_variables:
+  - name: default_target_location
+    help: Set the default location to download to
+
